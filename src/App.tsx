@@ -37,10 +37,10 @@ export default function App() {
     <main className="appShell">
       <header className="hero">
         <div>
-          <div className="eyebrow">Internal preview</div>
-          <h1>Teams & Outlook Wrapped</h1>
+          <div className="eyebrow">Microsoft 365 Wrapped</div>
+          <h1>Din jobbvardag som en story.</h1>
           <p>
-            Spotify Wrapped-känsla för jobbet: ett klickbart kort per stat, roliga badges och bara aggregerad metadata.
+            Klicka dig igenom möten, mail, Teams och badges i ett enkelt, kul och privacy-safe Wrapped-flöde.
           </p>
         </div>
         <div className="privacyCard">
@@ -61,8 +61,8 @@ export default function App() {
 
       <UnauthenticatedTemplate>
         <section className="loginCard">
-          <h2>Logga in med Microsoft Entra ID</h2>
-          <p>Appen hämtar endast data för inloggad användare via Graph /me direkt i din browser.</p>
+          <h2>Logga in med ditt Microsoft-konto</h2>
+          <p>Din data räknas lokalt i browsern via Graph /me. Ingen annan kan se din Wrapped.</p>
           <button className="primary" onClick={signIn} disabled={inProgress !== InteractionStatus.None || !canUseMsal}>
             Logga in
           </button>
@@ -73,9 +73,9 @@ export default function App() {
         <section className="loginCard">
           <div>
             <h2>{accounts[0]?.name || "Du är inloggad"}</h2>
-            <p>Senaste 12 månaderna analyseras från kalender-, mail- och Teams-metadata.</p>
+            <p>Redo att skapa årets story från kalender-, mail- och Teams-metadata.</p>
           </div>
-          <button className="primary" onClick={loadWrapped}>Skapa min Wrapped</button>
+          <button className="primary" onClick={loadWrapped}>Starta min Wrapped</button>
         </section>
       </AuthenticatedTemplate>
 
