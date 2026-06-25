@@ -12,8 +12,6 @@ export default function App() {
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
 
-  const canUseMsal = Boolean(import.meta.env.VITE_ENTRA_CLIENT_ID);
-
   async function signIn() {
     setError("");
     await instance.loginPopup({ scopes: graphScopes });
@@ -52,18 +50,11 @@ export default function App() {
         </div>
       </header>
 
-      {!canUseMsal ? (
-        <section className="setupCard">
-          <h2>Konfiguration saknas</h2>
-          <p>Skapa <code>.env</code> från <code>.env.example</code> och sätt <code>VITE_ENTRA_CLIENT_ID</code>.</p>
-        </section>
-      ) : null}
-
       <UnauthenticatedTemplate>
         <section className="loginCard">
           <h2>Logga in med ditt Microsoft-konto</h2>
           <p>Din data räknas lokalt i browsern via Graph /me. Ingen annan kan se din Wrapped.</p>
-          <button className="primary" onClick={signIn} disabled={inProgress !== InteractionStatus.None || !canUseMsal}>
+          <button className="primary" onClick={signIn} disabled={inProgress !== InteractionStatus.None}>
             Logga in
           </button>
         </section>
