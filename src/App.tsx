@@ -14,7 +14,18 @@ export default function App() {
 
   async function signIn() {
     setError("");
-    await instance.loginPopup({ scopes: graphScopes });
+    try {
+      await instance.loginPopup({ scopes: graphScopes });
+    } catch (signInError) {
+      const message = signInError instanceof Error ? signInError.message : String(signInError);
+      if (message.includes("AADSTS65001") || message.toLowerCase().includes("admin")) {
+        setError(
+          "Microsoft Wrapped behöver admin-godkännande för Graph-behörigheterna i tenant. Be en Entra-admin öppna app registration och ge admin consent för User.Read, Calendars.Read, Mail.ReadBasic, People.Read och Chat.ReadBasic.",
+        );
+        return;
+      }
+      setError(message || "Kunde inte logga in.");
+    }
   }
 
   async function loadWrapped() {
@@ -35,6 +46,15 @@ export default function App() {
     <main className="appShell">
       <header className="hero">
         <div>
+          <div className="brandLine">
+            <span className="msMark" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+            </span>
+            <span>Microsoft 365 Wrapped</span>
+          </div>
           <div className="eyebrow">Microsoft 365 Wrapped</div>
           <h1>Din jobbvardag som en story.</h1>
           <p>

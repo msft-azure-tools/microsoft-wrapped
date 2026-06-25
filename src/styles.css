@@ -11,7 +11,7 @@ body {
   min-height: 100%;
   background:
     radial-gradient(circle at top left, var(--cp-accent-soft), transparent 34rem),
-    radial-gradient(circle at bottom right, var(--cp-highlight), transparent 30rem),
+    radial-gradient(circle at bottom right, color-mix(in srgb, var(--ms-green), transparent 86%), transparent 30rem),
     var(--cp-bg);
   color: var(--cp-text);
   font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -125,6 +125,45 @@ code {
   z-index: 1;
 }
 
+.brandLine {
+  align-items: center;
+  color: var(--cp-text-muted);
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 800;
+  gap: 10px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.msMark {
+  display: grid;
+  gap: 2px;
+  grid-template-columns: repeat(2, 10px);
+}
+
+.msMark span {
+  height: 10px;
+  width: 10px;
+}
+
+.msMark span:nth-child(1) {
+  background: var(--ms-red);
+}
+
+.msMark span:nth-child(2) {
+  background: var(--ms-green);
+}
+
+.msMark span:nth-child(3) {
+  background: var(--ms-blue);
+}
+
+.msMark span:nth-child(4) {
+  background: var(--ms-yellow);
+}
+
 h1 {
   font-size: clamp(48px, 9vw, 108px);
   letter-spacing: -.07em;
@@ -234,8 +273,9 @@ p {
 .storyCard {
   align-content: space-between;
   background:
-    radial-gradient(circle at 18% 20%, var(--cp-highlight), transparent 18rem),
-    radial-gradient(circle at 80% 24%, var(--cp-accent-soft), transparent 24rem),
+    radial-gradient(circle at 18% 20%, color-mix(in srgb, var(--ms-blue), transparent 82%), transparent 18rem),
+    radial-gradient(circle at 80% 24%, color-mix(in srgb, var(--ms-green), transparent 86%), transparent 24rem),
+    radial-gradient(circle at 65% 88%, color-mix(in srgb, var(--ms-yellow), transparent 86%), transparent 18rem),
     var(--cp-bg-elevated);
   border: 1px solid var(--cp-border);
   border-radius: 16px;
@@ -270,6 +310,7 @@ p {
 }
 
 .orbOne {
+  background: color-mix(in srgb, var(--ms-blue), transparent 82%);
   height: 270px;
   right: -74px;
   top: -96px;
@@ -278,6 +319,7 @@ p {
 
 .orbTwo {
   animation-delay: -2s;
+  background: color-mix(in srgb, var(--ms-green), transparent 84%);
   bottom: -108px;
   height: 250px;
   left: -82px;
@@ -286,6 +328,7 @@ p {
 
 .orbThree {
   animation-delay: -4s;
+  background: color-mix(in srgb, var(--ms-yellow), transparent 78%);
   bottom: 18%;
   height: 92px;
   right: 12%;
