@@ -30,14 +30,14 @@ export default function App() {
 
   async function loadWrapped() {
     setError("");
-    setStatus("Hämtar metadata från Graph och bygger Wrapped...");
+    setStatus("Vi mixar årets signaler...");
     try {
       const token = await getGraphToken(instance);
       const payload = await buildWrappedFromGraph(token);
       setStats(payload);
-      setStatus("Wrapped klar.");
+      setStatus("Din Wrapped är klar.");
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "Kunde inte hämta Wrapped-data.");
+      setError(loadError instanceof Error ? loadError.message : "Något kom emellan. Testa igen om en stund.");
       setStatus("");
     }
   }
@@ -56,26 +56,26 @@ export default function App() {
             <span>Microsoft 365 Wrapped</span>
           </div>
           <div className="eyebrow">Microsoft 365 Wrapped</div>
-          <h1>Din jobbvardag som en story.</h1>
+          <h1>Året du jobbade. Remastrat.</h1>
           <p>
-            Klicka dig igenom möten, mail, Teams och badges i ett enkelt, kul och privacy-safe Wrapped-flöde.
+            Möten, mail och Teams-signaler blir en snabb, snygg story om hur ditt år faktiskt såg ut.
           </p>
         </div>
         <div className="privacyCard">
-          <strong>Privacy guardrails</strong>
-          <span>Endast Graph <code>/me</code></span>
-          <span>Ingen mailtext</span>
-          <span>Ingen chatttext</span>
-          <span>Inga mötesämnen i UI</span>
+          <strong>Byggd för dig</strong>
+          <span>Bara din profil</span>
+          <span>Inget innehåll läses</span>
+          <span>Inga ämnesrader visas</span>
+          <span>Din story, din skärm</span>
         </div>
       </header>
 
       <UnauthenticatedTemplate>
         <section className="loginCard">
-          <h2>Logga in med ditt Microsoft-konto</h2>
-          <p>Din data räknas lokalt i browsern via Graph /me. Ingen annan kan se din Wrapped.</p>
+          <h2>Klart? Då kör vi.</h2>
+          <p>Logga in och låt årets signaler bli en Wrapped-story på några sekunder.</p>
           <button className="primary" onClick={signIn} disabled={inProgress !== InteractionStatus.None}>
-            Logga in
+            Starta med Microsoft
           </button>
         </section>
       </UnauthenticatedTemplate>
@@ -84,9 +84,9 @@ export default function App() {
         <section className="loginCard">
           <div>
             <h2>{accounts[0]?.name || "Du är inloggad"}</h2>
-            <p>Redo att skapa årets story från kalender-, mail- och Teams-metadata.</p>
+            <p>Din data är redo. Nu gör vi den snygg.</p>
           </div>
-          <button className="primary" onClick={loadWrapped}>Starta min Wrapped</button>
+          <button className="primary" onClick={loadWrapped}>Skapa min Wrapped</button>
         </section>
       </AuthenticatedTemplate>
 
