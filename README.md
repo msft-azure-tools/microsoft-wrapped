@@ -72,7 +72,7 @@ The UI only receives aggregate counts, durations, weekday/month buckets, badges 
 
 ## Deploy to GitHub Pages
 
-1. Push `teams-wrapped-app` to your GitHub repo.
+1. Push this app to your GitHub repo.
 2. In GitHub repo settings, enable Pages with GitHub Actions.
 3. Add repository variables:
    - `VITE_ENTRA_CLIENT_ID`
