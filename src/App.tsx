@@ -20,24 +20,24 @@ export default function App() {
       const message = signInError instanceof Error ? signInError.message : String(signInError);
       if (message.includes("AADSTS65001") || message.toLowerCase().includes("admin")) {
         setError(
-          "Microsoft Wrapped behöver admin-godkännande för Graph-behörigheterna i tenant. Be en Entra-admin öppna app registration och ge admin consent för User.Read, Calendars.Read, Mail.ReadBasic, People.Read och Chat.ReadBasic.",
+          "Microsoft Wrapped needs admin approval for the Graph permissions in your tenant. Ask an Entra admin to grant admin consent for User.Read, Calendars.Read, Mail.ReadBasic, People.Read, and Chat.ReadBasic.",
         );
         return;
       }
-      setError(message || "Kunde inte logga in.");
+      setError(message || "Sign-in could not be completed.");
     }
   }
 
   async function loadWrapped() {
     setError("");
-    setStatus("Vi mixar årets signaler...");
+    setStatus("Mixing your year of signals...");
     try {
       const token = await getGraphToken(instance);
       const payload = await buildWrappedFromGraph(token);
       setStats(payload);
-      setStatus("Din Wrapped är klar.");
+      setStatus("Your Wrapped is ready.");
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "Något kom emellan. Testa igen om en stund.");
+      setError(loadError instanceof Error ? loadError.message : "Something got in the way. Try again in a moment.");
       setStatus("");
     }
   }
@@ -56,26 +56,26 @@ export default function App() {
             <span>Microsoft 365 Wrapped</span>
           </div>
           <div className="eyebrow">Microsoft 365 Wrapped</div>
-          <h1>Året du jobbade. Remastrat.</h1>
+          <h1>Your work year. Remastered.</h1>
           <p>
-            Möten, mail och Teams-signaler blir en snabb, snygg story om hur ditt år faktiskt såg ut.
+            Meetings, mail, and Teams signals turned into a fast, polished story of how your year really played out.
           </p>
         </div>
         <div className="privacyCard">
-          <strong>Byggd för dig</strong>
-          <span>Bara din profil</span>
-          <span>Inget innehåll läses</span>
-          <span>Inga ämnesrader visas</span>
-          <span>Din story, din skärm</span>
+          <strong>Built for you</strong>
+          <span>Your profile only</span>
+          <span>No content read</span>
+          <span>No subject lines shown</span>
+          <span>Your story, your screen</span>
         </div>
       </header>
 
       <UnauthenticatedTemplate>
         <section className="loginCard">
-          <h2>Klart? Då kör vi.</h2>
-          <p>Logga in och låt årets signaler bli en Wrapped-story på några sekunder.</p>
+          <h2>Ready? Let’s go.</h2>
+          <p>Sign in and turn a year of work signals into a Wrapped story in seconds.</p>
           <button className="primary" onClick={signIn} disabled={inProgress !== InteractionStatus.None}>
-            Starta med Microsoft
+            Start with Microsoft
           </button>
         </section>
       </UnauthenticatedTemplate>
@@ -83,10 +83,10 @@ export default function App() {
       <AuthenticatedTemplate>
         <section className="loginCard">
           <div>
-            <h2>{accounts[0]?.name || "Du är inloggad"}</h2>
-            <p>Din data är redo. Nu gör vi den snygg.</p>
+            <h2>{accounts[0]?.name || "You’re signed in"}</h2>
+            <p>Your data is ready. Now let’s make it look good.</p>
           </div>
-          <button className="primary" onClick={loadWrapped}>Skapa min Wrapped</button>
+          <button className="primary" onClick={loadWrapped}>Create my Wrapped</button>
         </section>
       </AuthenticatedTemplate>
 

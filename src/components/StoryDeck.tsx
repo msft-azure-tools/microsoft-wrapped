@@ -79,11 +79,11 @@ export function StoryDeck({ stats }: Props) {
       />
 
       <div className="deckActions">
-        <button className="ghost" onClick={previous} disabled={index === 0}>Tillbaka</button>
-        <button className="primary" onClick={next} disabled={index === stories.length - 1}>Nästa story</button>
-        <button className="ghost" onClick={exportPng}>Ladda ner PNG</button>
+        <button className="ghost" onClick={previous} disabled={index === 0}>Back</button>
+        <button className="primary" onClick={next} disabled={index === stories.length - 1}>Next</button>
+        <button className="ghost" onClick={exportPng}>Save card</button>
       </div>
-      <p className="deckHint">Tips: svep, klicka nästa eller använd piltangenterna.</p>
+      <p className="deckHint">Swipe. Click. Or use the arrow keys.</p>
     </section>
   );
 }
@@ -128,15 +128,15 @@ function WrappedCard({
       </div>
       {story.collaborator ? (
         <div className="miniStats">
-          <span>{story.collaborator.meetings} möten</span>
+          <span>{story.collaborator.meetings} meetings</span>
           <span>{story.collaborator.mail} mail</span>
           <span>{story.collaborator.chats} Teams</span>
         </div>
       ) : (
         <div className="miniStats">
-          <span>Metadata only</span>
+          <span>Signals only</span>
           <span>No content</span>
-          <span>/me scoped</span>
+          <span>Your data</span>
         </div>
       )}
     </article>

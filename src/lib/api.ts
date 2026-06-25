@@ -247,13 +247,13 @@ function aggregate(input: {
     mail: {
       sent: input.sentCount || input.sentMessages.length,
       received: input.receivedCount || input.receivedMessages.length,
-      busiestMonth: topEntry(monthActivity) || "okänd",
+      busiestMonth: topEntry(monthActivity) || "unknown",
     },
     meetings: {
       total: totalMeetings,
       totalMinutes: meetingMinutes,
       teamsMinutes,
-      busiestWeekday: topEntry(weekdayMinutes) || "okänd",
+      busiestWeekday: topEntry(weekdayMinutes) || "unknown",
       noMeetingDays: Math.max(0, workdays - meetingDays.size),
       averageMinutesPerWorkday: meetingMinutes / Math.max(workdays, 1),
     },
@@ -301,7 +301,7 @@ function addCollaborator(
 function incrementMonth(map: Map<string, number>, value?: string) {
   const date = parseDate(value);
   if (!date) return;
-  const key = new Intl.DateTimeFormat("sv-SE", { month: "long", year: "numeric" }).format(date);
+  const key = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(date);
   map.set(key, (map.get(key) || 0) + 1);
 }
 
@@ -322,10 +322,10 @@ function countWorkdays(start: Date, end: Date): number {
 
 function makeBadges(sent: number, received: number, meetingMinutes: number, teamsMinutes: number, collaborators: Collaborator[]): Badge[] {
   const badges: Badge[] = [];
-  if (meetingMinutes > 30000) badges.push({ title: "Meeting Marathoner", text: "Din kalender hade långdistansform." });
-  if (teamsMinutes > meetingMinutes * 0.7) badges.push({ title: "Teams Socializer", text: "Större delen av mötestiden var online." });
-  if (received > sent * 2) badges.push({ title: "Inbox Ninja", text: "Du överlevde en intensiv inkorg." });
-  if (collaborators.length >= 5) badges.push({ title: "Collaboration King", text: "Många personer återkom i din jobbmetadata." });
-  if (meetingMinutes < 12000) badges.push({ title: "Focus Time Champion", text: "Du behöll ovanligt mycket kalenderluft." });
-  return badges.length ? badges : [{ title: "Async Communicator", text: "Du lämnade ett stabilt men kontrollerat metadata-avtryck." }];
+  if (meetingMinutes > 30000) badges.push({ title: "Meeting Marathoner", text: "Your calendar had serious endurance energy." });
+  if (teamsMinutes > meetingMinutes * 0.7) badges.push({ title: "Teams Socializer", text: "Most of your meeting time lived online." });
+  if (received > sent * 2) badges.push({ title: "Inbox Ninja", text: "You survived a very active inbox." });
+  if (collaborators.length >= 5) badges.push({ title: "Collaboration King", text: "A strong cast kept showing up in your work signals." });
+  if (meetingMinutes < 12000) badges.push({ title: "Focus Time Champion", text: "You protected an impressive amount of calendar space." });
+  return badges.length ? badges : [{ title: "Async Communicator", text: "You left a calm, controlled trail across the work graph." }];
 }
